@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import FilterMovies from "./FilterMovies";
+import { TopNave } from "./TopNave";
+import { movies } from "./data";
+import Genrefilter from "./genrefilter";
 
-function App() {
+
+
+
+function App({ movie }) {
+
+  const [GenreSelect, SetGenreSelection] = useState('ALL');
+
+  const haldelGenreSelect = (genre) => {
+   SetGenreSelection(genre)
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      
+      <div className="container">
+        < TopNave />
+        < Genrefilter movie={movies} GenreSelect={haldelGenreSelect} />
+        < FilterMovies movie={movies} GenreSelect={GenreSelect} />
+      </div>
+    </>
+
   );
 }
 
